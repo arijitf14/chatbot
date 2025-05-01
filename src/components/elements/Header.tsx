@@ -14,7 +14,7 @@ export function Header() {
       </div>
 
       <div className="text-center space-y-1">
-        <h1 className="text-4xl font-bold">Welcome, Robert</h1>
+        <h1 style={{fontFamily: 'font-sans'}} className="text-4xl font-bold">Welcome, Robert</h1>
         <div className="flex items-center justify-center">
           <p className="text-3xl font-bold">$0.</p>
           <p className="text-3xl text-white/70">00</p>
