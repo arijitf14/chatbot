@@ -39,7 +39,7 @@ export async function sendMessage(
 ): Promise<SendMessageResponse | null> {
   return new Promise(async(resolve,reject) => {
     try {
-      const res = await fetch('https://12e7-49-47-156-231.ngrok-free.app/api/frontend/chat', {
+      const res = await fetch('http://localhost:5000/api/frontend/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
