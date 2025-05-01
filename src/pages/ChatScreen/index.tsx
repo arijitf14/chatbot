@@ -91,9 +91,9 @@ function ChatScreen({ threadId, userData }: Props) {
 
   const handleSend = async (e: FormEvent) => {
     e.preventDefault();
-    const res = await sendMessage({ ...userData, thread_id: threadId, message });
-    if (res?.system_msg) {
-      setChatLog([...chatLog, { user: message, ai: res.system_msg }]);
+    const {data}:any = await sendMessage({ ...userData, thread_id: threadId, message });
+    if (data) {
+      setChatLog([...chatLog, { user: message, ai: data.system_msg }]);
       setMessage('');
     }
   };

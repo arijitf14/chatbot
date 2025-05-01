@@ -56,15 +56,19 @@ interface StartConversationResponse {
   thread_id: string;
 }
 
-export async function startConversation(
-  data: StartConversationInput
-): Promise<StartConversationResponse | null> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        thread_id: "mock-thread-" + Math.random().toString(36).substring(2, 10),
+export async function startConversation(  data: StartConversationInput): Promise<StartConversationResponse | null> {
+  return new Promise(async(resolve,reject) => {
+    try {
+      const res = await fetch('http://localhost:5000/api/frontend/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       });
-    }, 500);
+      let rsp =  await res.json();
+      resolve(rsp)
+    } catch (err) {
+      reject(err)
+    }
   });
 }
 
@@ -81,9 +85,17 @@ interface SendMessageResponse {
 export async function sendMessage(
   data: SendMessageInput
 ): Promise<SendMessageResponse | null> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ system_msg: `Echo: ${data.message}` });
-    }, 500);
+  return new Promise(async(resolve,reject) => {
+    try {
+      const res = await fetch('http://localhost:5000/api/frontend/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      let rsp =  await res.json();
+      resolve(rsp)
+    } catch (err) {
+      reject(err)
+    }
   });
 }
